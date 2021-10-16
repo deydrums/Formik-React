@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React, { useState }  from 'react';
 
 
@@ -37,38 +37,37 @@ const Formulario = () => {
 				resetForm();
 			}}
 		>
-			{({values, errors, touched, handleSubmit, handleChange,handleBlur}) =>(
-			<form className="formulario" onSubmit={handleSubmit}>
+			{({errors}) =>(
+			<Form className="formulario">
 
 				<div>
 					<label htmlFor="nombre">Nombre</label>
-					<input 
-					type="text" 
-					name="nombre" 
-					id="nombre" 
-					placeholder="Tu nombre" 
-					value={values.nombre} 
-					onChange={handleChange}
-					onBlur={handleBlur}
+					<Field 
+						type="text" 
+						name="nombre" 
+						id="nombre" 
+						placeholder="Tu nombre" 
 					/>
 				</div>
-				{touched.nombre && errors.nombre && <div className="error">{errors.nombre}</div>}
+				<ErrorMessage name = "nombre" component={()=>(
+					<div className="error">{errors.nombre}</div>
+				)}/>
 				<div>
 					<label htmlFor="correo">Nombre</label>
-					<input 
-					type="text" 
-					name="correo" 
-					id="correo" 
-					placeholder="Tu correo" 
-					value={values.correo} 
-					onChange={handleChange}
-					onBlur={handleBlur}
+					<Field 
+						type="text" 
+						name="correo" 
+						id="correo" 
+						placeholder="Tu correo" 
 					/>
 				</div>
-				{touched.correo && errors.correo && <div className="error">{errors.correo}</div>}
+				<ErrorMessage name = "correo" component={()=>(
+					<div className="error">{errors.correo}</div>
+				)}/>				
+				
 				<button type="submit">Enviar</button>
 				{formularioEnviado && <p className="exito">Formulario enviado con exito</p>}
-			</form>
+			</Form>
 			)}
 		</Formik>
 
