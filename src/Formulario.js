@@ -1,12 +1,13 @@
 import { Formik } from 'formik';
-import React  from 'react';
+import React, { useState }  from 'react';
 
 
 const Formulario = () => {
-
+	const [formularioEnviado, setformularioEnviado] = useState(false);
 
 	return (
 		<>
+
 		<Formik
 			initialValues={{
 				nombre: "",
@@ -32,6 +33,7 @@ const Formulario = () => {
 			}}
 			onSubmit={(valores, {resetForm})=>{
 				console.log(valores)
+				setformularioEnviado(true);
 				resetForm();
 			}}
 		>
@@ -65,6 +67,7 @@ const Formulario = () => {
 				</div>
 				{touched.correo && errors.correo && <div className="error">{errors.correo}</div>}
 				<button type="submit">Enviar</button>
+				{formularioEnviado && <p className="exito">Formulario enviado con exito</p>}
 			</form>
 			)}
 		</Formik>
