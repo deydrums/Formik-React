@@ -9,8 +9,8 @@ const Formulario = () => {
 		<>
 		<Formik
 			initialValues={{
-				nombre: "David",
-				correo: "dagarcia100@gmail.com"
+				nombre: "",
+				correo: ""
 			}}
 			validate={(valores)=>{
 				let errores = {};
@@ -30,11 +30,12 @@ const Formulario = () => {
 
 				return errores;
 			}}
-			onSubmit={(valores)=>{
+			onSubmit={(valores, {resetForm})=>{
 				console.log(valores)
+				resetForm();
 			}}
 		>
-			{({values, errors, handleSubmit, handleChange,handleBlur}) =>(
+			{({values, errors, touched, handleSubmit, handleChange,handleBlur}) =>(
 			<form className="formulario" onSubmit={handleSubmit}>
 
 				<div>
@@ -49,7 +50,7 @@ const Formulario = () => {
 					onBlur={handleBlur}
 					/>
 				</div>
-				{errors.nombre && <div className="error">{errors.nombre}</div>}
+				{touched.nombre && errors.nombre && <div className="error">{errors.nombre}</div>}
 				<div>
 					<label htmlFor="correo">Nombre</label>
 					<input 
@@ -62,7 +63,7 @@ const Formulario = () => {
 					onBlur={handleBlur}
 					/>
 				</div>
-				{errors.correo && <div className="error">{errors.correo}</div>}
+				{touched.correo && errors.correo && <div className="error">{errors.correo}</div>}
 				<button type="submit">Enviar</button>
 			</form>
 			)}
