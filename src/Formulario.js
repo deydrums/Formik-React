@@ -21,6 +21,13 @@ const Formulario = () => {
 					errores.nombre = 'El nombre solo puede contener letras y espacios'
 				}
 
+
+				if(!valores.correo){
+					errores.correo = 'Por favor ingresa un correo'
+				}else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.correo)){
+					errores.correo = 'El correo no es valido'
+				}
+
 				return errores;
 			}}
 			onSubmit={(valores)=>{
