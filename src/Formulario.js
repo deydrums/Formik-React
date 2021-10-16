@@ -12,11 +12,12 @@ const Formulario = () => {
 				nombre: "David",
 				correo: "dagarcia100@gmail.com"
 			}}
-			onSubmit={()=>{
+			onSubmit={(valores)=>{
+				console.log(valores)
 				console.log("Formulario enviado")
 			}}
 		>
-			{({values, handleSubmit, handleChange}) =>(
+			{({values, handleSubmit, handleChange,handleBlur}) =>(
 			<form className="formulario" onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor="nombre">Nombre</label>
@@ -27,6 +28,7 @@ const Formulario = () => {
 					placeholder="Tu nombre" 
 					value={values.nombre} 
 					onChange={handleChange}
+					onBlur={handleBlur}
 					/>
 				</div>
 				<div>
@@ -38,6 +40,7 @@ const Formulario = () => {
 					placeholder="Tu correo" 
 					value={values.correo} 
 					onChange={handleChange}
+					onBlur={handleBlur}
 					/>
 				</div>
 				<button type="submit">Enviar</button>
